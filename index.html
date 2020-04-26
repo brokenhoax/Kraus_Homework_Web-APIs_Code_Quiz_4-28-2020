@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>to-do list</title>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-12 justify-content-center">
+        <div>
+            <div class="form-group" id="toDoInput">
+                <label for="exampleInputEmail1">Task to do</label>
+                <input type="text" class="form-control" id="userInput" aria-describedby="listInput">
+                <small id="emailHelp" class="form-text text-muted">Put whatever you want to do in here.</small>
+            </div>
+            <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="col-md-12 justify-content-center" id="toDoList">
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js.js"></script>
+</body>
+</html>
