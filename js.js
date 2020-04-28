@@ -10,6 +10,7 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 const startingMinutes = 2; 
 let time = startingMinutes * 60;
 let timerEl = document.getElementById("tick-tock")
+let points = 0;
 // var player;
 
 startButton.addEventListener('click', startGame)
@@ -66,6 +67,8 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
+    pointsFunc(document.body, correct)
+    timePenalty(document.body, correct)
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
@@ -93,6 +96,25 @@ function setStatusClass(element, correct) {
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('incorrect')
+}
+
+function pointsFunc(correct) {
+    if (correct) {
+        points = points + 10
+    } else {
+        points = points - 10
+    }
+    console.log(points)
+}
+
+function timePenalty(correct) {
+    if (correct) {
+        time = time
+    } else {
+        time = time - 20
+        timerCounter(time);
+    }
+    console.log(time)
 }
 
 const questions = [
@@ -137,7 +159,7 @@ function enterScore() {
     console.log(playerName)
     submitResults.classList.add('hide')
     getScoreEl.classList.remove('hide')
-    $('#scoreboard').append('Congratulations, ' + playerName + '!')
+    $('#scoreboard').append('Congratulations, ' + playerName + '!' + ' You have earned ' + points + ' points!') 
 }
 // function shareScores(playerName) {
 //     getScoreEl.classList.remove('hide')
