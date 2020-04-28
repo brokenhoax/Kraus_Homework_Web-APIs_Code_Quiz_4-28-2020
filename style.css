@@ -17,12 +17,10 @@ body.incorrect {
 
 .welcome {
     color: whitesmoke;
-    font-size: 1vw;
     margin-top: 5vh;
 }   
 
 .welcome h1 {
-    padding-top: 2vw;
     color: whitesmoke;
 }   
 
@@ -55,7 +53,6 @@ body.incorrect {
 
 #question {
     color: rgb(42, 42, 42);
-    font-size:
 }
 
 #answer {
@@ -99,15 +96,3 @@ body.incorrect {
     padding: 10px 20px;
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-

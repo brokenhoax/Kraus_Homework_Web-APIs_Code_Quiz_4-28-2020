@@ -11,13 +11,13 @@
         <a class="navbar-brand" href="index.html">Code Quiz!</a>
         <div id="tick-tock" class="ml-auto"></div>
     </nav>
-    <div class="container welcome">
+    <div class="container welcome" id="instructions">
         <div>
             <h1>Welcome to Code Quiz!</h1><br>
                 <h2>How To Play:</h2><br>
                     <ul>
                         <li>You will have 2 minutes to complete the quiz.</li>
-                        <li>A countdown timer will help you keep track.</li>
+                        <li>A countdown timer (top-right) will help you keep track.</li>
                         <li>You will earn 10 points for every question you answer correctly.</li>
                         <li>You will earn 0 points for every question you get wrong.</li>
                         <li>You will be docked 10 seconds for every question you get wrong.</li>    <br>
@@ -31,16 +31,17 @@
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid butt">
-                <button class="butt">Answer 1</button>
-                <button class="butt">Answer 2</button>
-                <button class="butt">Answer 3</button>
-                <button class="butt">Answer 4</button>
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
             </div>
         </div>
 
     <div class="controls">
         <button id="start-btn" class="start-btn btn btn-primary">Ready!</button>
         <button id="next-btn" class="next-btn btn btn-primary hide">Next</button>
+        <button id="results-btn" class="results-btn btn btn-primary hide">Submit Your Results!</button>
     </div>
 
         <script src="https://code.jquery.com/jquery.js"></script>
