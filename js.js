@@ -3,6 +3,7 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const submitResults = document.getElementById('results-btn')
 const questionContainerElement = document.getElementById ('question-container')
+const getScoreEl = document.getElementById('scoreboard')
 let shuffledQuestions, currentQuestionIndex
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
@@ -134,5 +135,11 @@ function enterScore() {
     var playerName = prompt ("Enter your name to record your score.")
     localStorage.setItem('User', playerName)
     console.log(playerName)
+    submitResults.classList.add('hide')
+    getScoreEl.classList.remove('hide')
+    $('#scoreboard').append('Congratulations, ' + playerName + '!')
 }
-
+// function shareScores(playerName) {
+//     getScoreEl.classList.remove('hide')
+//     $('#scoreboard').append('Congratulations,' + playerName + '!')
+// }
