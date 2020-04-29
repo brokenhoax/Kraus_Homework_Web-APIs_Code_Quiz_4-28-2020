@@ -135,7 +135,25 @@ const questions = [
             {text: 'Blue', correct: true},
             {text: 'Yellow', correct: false},
         ]
-    }
+    },
+    {
+        question: 'Which of the following is NOT one of the three common languages used to create web pages?', 
+        answers: [
+            {text: 'Python', correct: true}, 
+            {text: 'CSS', correct: false},
+            {text: 'HTML', correct: false},
+            {text: 'JavaScript', correct: false},
+        ]
+    },
+    {
+        question: 'What\'s the proper syntax used to comment out HTML code?', 
+        answers: [
+            {text: '/* /', correct: true}, 
+            {text: '<!-- -->', correct: false},
+            {text: '**== ==**', correct: false},
+            {text: '^^_ _^^', correct: false},
+        ]
+    },
 ]
 
 function timerCounter() {
