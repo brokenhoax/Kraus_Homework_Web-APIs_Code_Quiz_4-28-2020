@@ -7,7 +7,7 @@ const getScoreEl = document.getElementById('scoreboard')
 let shuffledQuestions, currentQuestionIndex
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-const startingMinutes = 2; 
+const startingMinutes = .1; 
 let time = startingMinutes * 60;
 let timerEl = document.getElementById("tick-tock")
 let points = 0;
@@ -29,8 +29,7 @@ function startGame() {
     startButton.classList.add('hide')
     instructions.classList.add('hide')
     setInterval(timerCounter,1000)
-    setTimeout(timerExpire,120000)
-    timerCounter()
+    // setTimeout(timerExpire,120000)
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
@@ -67,8 +66,8 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
-    pointsFunc(document.body, correct)
-    timePenalty(document.body, correct)
+    pointsFunc(correct)
+    timePenalty(time, correct)
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
@@ -107,14 +106,13 @@ function pointsFunc(correct) {
     console.log(points)
 }
 
-function timePenalty(correct) {
+function timePenalty(time, correct) {
     if (correct) {
         time = time
     } else {
-        time = time - 20
-        timerCounter(time);
+        // timerEl.innerText = (timerEl.innerText - 10)
+        time = time - 10
     }
-    console.log(time)
 }
 
 const questions = [
@@ -146,10 +144,10 @@ const questions = [
         ]
     },
     {
-        question: 'What\'s the proper syntax used to comment out HTML code?', 
+        question: 'What is the proper tag used to comment out HTML code?', 
         answers: [
-            {text: '/* /', correct: true}, 
-            {text: '<!-- -->', correct: false},
+            {text: '/* /', correct: false}, 
+            {text: '<!-- -->', correct: true},
             {text: '**== ==**', correct: false},
             {text: '^^_ _^^', correct: false},
         ]
@@ -160,16 +158,26 @@ function timerCounter() {
     const minutes = Math.floor(time / 60);
     let seconds = time % 60;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    timerEl.innerHTML = `${minutes}: ${seconds}`;
-    time--;
+    timerEl.innerHTML = `${minutes}: ${seconds}`
+    time--
+    if(time < 0 ) {
+        clearInterval(time = 0)
+        answerButtonsElement.classList.add('hide')
+        questionElement.classList.add('hide')
+        submitResults.classList.remove('hide')
+    }
 }
 
-function timerExpire() {
-    answerButtonsElement.classList.add('hide')
-    questionElement.classList.add('hide')
-    submitResults.classList.remove('hide')
-    timerEl.classList.add('hide')
-}
+// function timerCounter() {
+//     setInterval(function (){
+//         if(time <= 0 ) {
+//             clearInterval(time = 0)
+//         }
+//         timerEl.innerHTML = time
+//         time -=1
+//     }, 1000)
+// }
+
 
 function enterScore() {
     var playerName = prompt ("Enter your name to record your score.")
