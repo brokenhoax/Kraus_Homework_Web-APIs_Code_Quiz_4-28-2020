@@ -59,6 +59,7 @@ body.incorrect {
 
 #scoreboard {
     color: rgb(42, 42, 42);
+    text-align: center;
 }
 
 .btn-secondary {

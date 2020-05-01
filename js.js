@@ -28,8 +28,7 @@ function startGame() {
     console.log('Started')
     startButton.classList.add('hide')
     instructions.classList.add('hide')
-    setInterval(timerCounter,1000)
-    // setTimeout(timerExpire,120000)
+    timerCounter()
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
@@ -155,38 +154,39 @@ const questions = [
 ]
 
 function timerCounter() {
-    const minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    timerEl.innerHTML = `${minutes}: ${seconds}`
-    time--
-    if(time < 0 ) {
-        clearInterval(time = 0)
-        answerButtonsElement.classList.add('hide')
-        questionElement.classList.add('hide')
-        submitResults.classList.remove('hide')
-    }
+    setInterval(function() {
+        if (time <= 0) {
+            clearInterval(time = 0)
+            timerExpire()
+        }
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerEl.innerHTML = `${minutes}: ${seconds}`;
+        time-=1;
+    }, 1000)
 }
 
-// function timerCounter() {
-//     setInterval(function (){
-//         if(time <= 0 ) {
-//             clearInterval(time = 0)
-//         }
-//         timerEl.innerHTML = time
-//         time -=1
-//     }, 1000)
-// }
-
+function timerExpire() {
+    answerButtonsElement.classList.add('hide')
+    questionElement.classList.add('hide')
+    submitResults.classList.remove('hide')
+}
 
 function enterScore() {
     var playerName = prompt ("Enter your name to record your score.")
     localStorage.setItem('User', playerName)
     console.log(playerName)
-    submitResults.classList.add('hide')
     getScoreEl.classList.remove('hide')
-    $('#scoreboard').append('Congratulations, ' + playerName + '!' + ' You have earned ' + points + ' points!') 
+    $('#scoreboard').append('<br> Congratulations, ' + playerName + '!' + ' You have earned ' + points + ' points!')
+    // startButton.classList.remove('hide')
+    // submitResults.classList.add('hide')
+    timerCounter()
 }
+
+//I want to have submit results disappear after user enters name but it won't because if statement in "timerCounter" function. How do I fix this? Should I do a "Do" loop so it Also, I want to maintain a high-score list so as the user plays they can see their progress. Last, I want to allow the user to play again after they are done entering their name and reviewing their score. 
+
+
 // function shareScores(playerName) {
 //     getScoreEl.classList.remove('hide')
 //     $('#scoreboard').append('Congratulations,' + playerName + '!')
